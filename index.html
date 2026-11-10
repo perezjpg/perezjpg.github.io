@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>perezjpg — Johna</title>
+<meta name="description" content="Johna (perezjpg) — self-hosted game servers, Discord bots and C++.">
+<meta name="theme-color" content="#07060D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Chakra+Petch:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#07060D}
+a{color:#E8E6F0}a:hover{color:#00F0FF}
+.glitch{position:relative}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;opacity:0;pointer-events:none}
+.glitch::before{color:#FF2BD6}
+.glitch::after{color:#00F0FF}
+.floor{background-image:linear-gradient(rgba(255,43,214,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.5) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(to top,#000 20%,transparent 95%);mask-image:linear-gradient(to top,#000 20%,transparent 95%)}
+.scanlines{background-image:repeating-linear-gradient(to bottom,rgba(255,255,255,.04) 0,rgba(255,255,255,.04) 1px,transparent 1px,transparent 4px)}
+.rain span{position:absolute;top:-20%;width:1px;height:18%;opacity:.55}
+.cut{clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes down{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes drop{0%{opacity:0;transform:translateY(-140px)}70%{opacity:1;transform:translateY(6px)}100%{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.7)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes type{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes grid{to{background-position:0 64px,0 0}}
+@keyframes fall{to{transform:translateY(720%)}}
+@keyframes sweep{from{transform:translateY(-140px)}to{transform:translateY(110vh)}}
+@keyframes driftA{0%,100%{transform:translate(0,0)}50%{transform:translate(8vw,6vh)}}
+@keyframes driftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-10vw,-8vh)}}
+@keyframes flicker{0%,18%,22%,62%,64%,100%{opacity:1}20%,63%{opacity:.35}}
+@keyframes g1{0%,86%,100%{opacity:0;transform:none}87%{opacity:.9;transform:translate(-5px,0);clip-path:inset(8% 0 62% 0)}90%{opacity:.9;transform:translate(4px,0);clip-path:inset(55% 0 12% 0)}93%{opacity:0}}
+@keyframes g2{0%,86%,100%{opacity:0;transform:none}88%{opacity:.9;transform:translate(5px,0);clip-path:inset(40% 0 30% 0)}91%{opacity:.9;transform:translate(-4px,0);clip-path:inset(5% 0 78% 0)}94%{opacity:0}}
+@media (prefers-reduced-motion: no-preference){
+html{scroll-behavior:smooth}
+.floor{animation:grid 1.6s linear infinite}
+.rain span{animation:fall linear infinite}
+.sweep{animation:sweep 7s linear infinite}
+.orbA{animation:driftA 18s ease-in-out infinite}
+.orbB{animation:driftB 22s ease-in-out infinite}
+.glitch::before{animation:g1 4.2s steps(1) infinite}
+.glitch::after{animation:g2 4.2s steps(1) infinite}
+.logo{animation:flicker 5s linear infinite}
+header{animation:down .6s ease-out backwards}
+.hero>*{animation:up .8s cubic-bezier(.2,.7,.2,1) backwards}
+.hero>*:nth-child(1){animation-delay:.15s}
+.hero>*:nth-child(2){animation-delay:.3s}
+.hero>*:nth-child(3){animation-delay:.45s}
+.hero>*:nth-child(4){animation-delay:.6s}
+.blocks>div{animation:drop .6s cubic-bezier(.3,.8,.3,1) backwards,pulse 3s ease-in-out 1.6s infinite}
+.blocks>div:nth-child(n+13){animation-delay:.3s,1.6s}
+.blocks>div:nth-child(n+9):nth-child(-n+12){animation-delay:.45s,2.1s}
+.blocks>div:nth-child(n+5):nth-child(-n+8){animation-delay:.6s,2.6s}
+.blocks>div:nth-child(-n+4){animation-delay:.75s,3.1s}
+.blocks>div:nth-child(3n+2){animation-delay:.85s,3.7s}
+.cursor{animation:blink 1.05s steps(1) infinite}
+.caret{animation:blink 1s steps(1) infinite}
+@supports (animation-timeline: view()){
+#projects h2,#projects .card,#about h2,#about p,#about li,#contact h2,#contact p,#contact .btns a{animation:up linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
+.term>div{animation:type linear both;animation-timeline:view()}
+.term>div:nth-child(1){animation-range:entry 30% cover 28%}
+.term>div:nth-child(2){animation-range:cover 24% cover 32%}
+.term>div:nth-child(3){animation-range:cover 30% cover 37%}
+.term>div:nth-child(4){animation-range:cover 35% cover 42%}
+.term>div:nth-child(5){animation-range:cover 40% cover 46%}
+.term>div:nth-child(6){animation-range:cover 45% cover 48%}
+}
+.blocks>div{transition:translate .2s ease}
+.blocks>div:hover{translate:0 -8px}
+.card{transition:translate .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover{translate:0 -5px;border-color:rgba(0,240,255,.8);box-shadow:0 0 28px rgba(0,240,255,.28),0 0 2px rgba(0,240,255,.9)}
+.btns a{transition:translate .15s ease,filter .15s ease}
+.btns a:hover{translate:0 -2px;filter:brightness(1.25) drop-shadow(0 0 10px rgba(0,240,255,.6))}
+.logo span{transition:rotate .45s cubic-bezier(.3,1.4,.5,1)}
+.logo:hover span{rotate:90deg}
+}
+</style>
+</head>
+<body>
+<div style="position: relative; background: #07060D; color: #E8E6F0; font-family: Inter, system-ui, sans-serif; font-size: 1rem; line-height: 1.6; min-height: 100vh">
+
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none">
+<div class="orbA" style="position: absolute; left: -10%; top: -15%; width: 55vw; height: 55vw; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,240,255,0.16), transparent)"></div>
+<div class="orbB" style="position: absolute; right: -15%; top: 20%; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,43,214,0.16), transparent)"></div>
+<div class="floor" style="position: absolute; left: -60%; right: -60%; bottom: -8%; height: 62%; transform: perspective(420px) rotateX(63deg); transform-origin: 50% 100%"></div>
+<div class="rain" style="position: absolute; inset: 0">
+<span style="left: 6%; background: linear-gradient(transparent, #00F0FF); animation-duration: 3.4s; animation-delay: -1.2s"></span>
+<span style="left: 14%; background: linear-gradient(transparent, #FF2BD6); animation-duration: 5.1s; animation-delay: -3s"></span>
+<span style="left: 23%; background: linear-gradient(transparent, #00F0FF); animation-duration: 4.2s; animation-delay: -0.4s"></span>
+<span style="left: 31%; background: linear-gradient(transparent, #00F0FF); animation-duration: 6s; animation-delay: -4.4s"></span>
+<span style="left: 42%; background: linear-gradient(transparent, #FF2BD6); animation-duration: 3.8s; animation-delay: -2.1s"></span>
+<span style="left: 55%; background: linear-gradient(transparent, #00F0FF); animation-duration: 4.8s; animation-delay: -0.9s"></span>
+<span style="left: 63%; background: linear-gradient(transparent, #00F0FF); animation-duration: 3.2s; animation-delay: -2.7s"></span>
+<span style="left: 72%; background: linear-gradient(transparent, #FF2BD6); animation-duration: 5.6s; animation-delay: -1.6s"></span>
+<span style="left: 81%; background: linear-gradient(transparent, #00F0FF); animation-duration: 4.4s; animation-delay: -3.6s"></span>
+<span style="left: 89%; background: linear-gradient(transparent, #00F0FF); animation-duration: 3.6s; animation-delay: -0.2s"></span>
+<span style="left: 96%; background: linear-gradient(transparent, #FF2BD6); animation-duration: 5.3s; animation-delay: -4s"></span>
+</div>
+<div class="scanlines" style="position: absolute; inset: 0"></div>
+<div class="sweep" style="position: absolute; left: 0; right: 0; top: 0; height: 140px; background: linear-gradient(transparent, rgba(0,240,255,0.07), transparent); transform: translateY(-140px)"></div>
+</div>
+
+<div style="position: relative; z-index: 1">
+<header style="border-bottom: 1px solid rgba(0,240,255,0.2); background: rgba(7,6,13,0.6); backdrop-filter: blur(8px)">
+<nav aria-label="Main" style="max-width: 1080px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: 0.06em; min-height: 44px; color: #E8E6F0; text-shadow: 0 0 12px rgba(0,240,255,0.7)">
+<span aria-hidden="true" style="width: 20px; height: 20px; background: #00F0FF; display: inline-block; box-shadow: 0 0 14px #00F0FF"></span>
+PEREZJPG
+</a>
+<div style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem">
+<a href="#projects" style="text-decoration: none; padding: 11px 14px">/projects</a>
+<a href="#about" style="text-decoration: none; padding: 11px 14px">/about</a>
+<a href="#contact" style="text-decoration: none; padding: 11px 14px">/contact</a>
+<a href="https://github.com/perezjpg" style="text-decoration: none; padding: 11px 14px; display: flex; align-items: center; gap: 6px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+github
+</a>
+</div>
+</nav>
+</header>
+
+<main id="top">
+<section style="max-width: 1080px; margin: 0 auto; padding: 104px 24px 96px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div class="hero" style="flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: #FF2BD6; letter-spacing: 0.04em">&gt; JOHNA // PUERTO RICO // ONLINE</p>
+<h1 class="glitch" data-text="I build tools I actually use." style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; text-transform: uppercase; text-shadow: 0 0 22px rgba(0,240,255,0.45)">I build tools I actually use.<span class="cursor" aria-hidden="true" style="display: inline-block; width: 0.45em; height: 0.8em; margin-left: 0.1em; vertical-align: -0.04em; background: #00F0FF; box-shadow: 0 0 16px #00F0FF"></span></h1>
+<p style="margin: 0; font-size: 1.125rem; color: #B5B1CC; max-width: 36rem">Self-hosted game servers, Discord bots and a growing pile of C++. I'm Johna — I serve in the US Army, live in Puerto Rico, and write code for the things my friends and I use every day.</p>
+<div class="btns" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+<a href="#projects" class="cut" style="text-decoration: none; background: #00F0FF; color: #07060D; padding: 12px 24px; font-family: 'Chakra Petch', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">See my projects</a>
+<a href="https://github.com/perezjpg" class="cut" style="text-decoration: none; background: rgba(255,43,214,0.18); color: #FFD9F7; padding: 12px 24px; font-family: 'Chakra Petch', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">@perezjpg on GitHub</a>
+</div>
+</div>
+<div class="blocks" aria-hidden="true" style="flex: 1 1 280px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 320px">
+<div style="aspect-ratio: 1; background: #00F0FF; box-shadow: 0 0 18px rgba(0,240,255,0.7)"></div>
+<div style="aspect-ratio: 1; border: 1px solid rgba(0,240,255,0.5)"></div>
+<div style="aspect-ratio: 1; background: #FF2BD6; box-shadow: 0 0 18px rgba(255,43,214,0.7)"></div>
+<div style="aspect-ratio: 1; border: 1px solid rgba(0,240,255,0.5)"></div>
+<div style="aspect-ratio: 1; border: 1px solid rgba(255,43,214,0.5)"></div>
+<div style="aspect-ratio: 1; background: #1B1836"></div>
+<div style="aspect-ratio: 1; background: #00F0FF; box-shadow: 0 0 18px rgba(0,240,255,0.7)"></div>
+<div style="aspect-ratio: 1; background: #1B1836"></div>
+<div style="aspect-ratio: 1; background: #1B1836"></div>
+<div style="aspect-ratio: 1; background: #FF2BD6; box-shadow: 0 0 18px rgba(255,43,214,0.7)"></div>
+<div style="aspect-ratio: 1; border: 1px solid rgba(0,240,255,0.5)"></div>
+<div style="aspect-ratio: 1; background: #00F0FF; box-shadow: 0 0 18px rgba(0,240,255,0.7)"></div>
+<div style="aspect-ratio: 1; background: #00F0FF; box-shadow: 0 0 18px rgba(0,240,255,0.7)"></div>
+<div style="aspect-ratio: 1; background: #1B1836"></div>
+<div style="aspect-ratio: 1; border: 1px solid rgba(255,43,214,0.5)"></div>
+<div style="aspect-ratio: 1; background: #FF2BD6; box-shadow: 0 0 18px rgba(255,43,214,0.7)"></div>
+</div>
+</section>
+
+<section id="projects" style="border-top: 1px solid rgba(0,240,255,0.2)">
+<div style="max-width: 1080px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px">
+<h2 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 2.25rem; text-transform: uppercase; letter-spacing: 0.04em"><span style="color: #FF2BD6; font-family: 'JetBrains Mono', monospace; font-size: 1rem; vertical-align: middle">01 // </span>Projects</h2>
+<a href="https://github.com/perezjpg?tab=repositories" style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem">all repositories →</a>
+</div>
+
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); display: flex; flex-wrap: wrap">
+<div style="flex: 999 1 420px; min-width: 0; padding: 36px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #FF2BD6; font-weight: 500; letter-spacing: 0.06em">FEATURED · PRIVATE REPO</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.875rem; letter-spacing: 0.02em">mc-panel</h3>
+<p style="margin: 0; color: #B5B1CC">A self-hosted control panel for a Minecraft (Fabric) server. One web page to start, stop, update, back up and tune the server — built with FastAPI and vanilla JavaScript, running in Docker on my own PC so friends can jump in any time.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">Python</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">FastAPI</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">Docker</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">SQLite</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">pytest</li>
+</ul>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: rgba(0,240,255,0.05); border-left: 1px solid rgba(0,240,255,0.2); padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 12px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #A9A5C4; letter-spacing: 0.08em">WHAT IT DOES</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #E8E6F0">
+<li><span style="color: #00F0FF">▸</span> Switch Minecraft version and mod loader</li>
+<li><span style="color: #00F0FF">▸</span> Install modpacks from Modrinth and CurseForge</li>
+<li><span style="color: #00F0FF">▸</span> Backups, restore and a worlds manager</li>
+<li><span style="color: #00F0FF">▸</span> Live CPU and RAM limits</li>
+<li><span style="color: #00F0FF">▸</span> Auto-pause when nobody is online</li>
+<li><span style="color: #00F0FF">▸</span> Crash detection and an activity log</li>
+<li><span style="color: #00F0FF">▸</span> Invite-friends page with a public tunnel</li>
+</ul>
+</div>
+</article>
+
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); display: flex; flex-wrap: wrap">
+<div style="flex: 999 1 420px; min-width: 0; padding: 36px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #FF2BD6; font-weight: 500; letter-spacing: 0.06em">DISCORD BOT</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.875rem; letter-spacing: 0.02em">QUAD Bot</h3>
+<p style="margin: 0; color: #B5B1CC">A self-hosted Discord bot with music, moderation, utility, fun and server-management commands. Every command works as both a slash command and a text command, and music plays from YouTube, Spotify and SoundCloud.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">JavaScript</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">Node.js</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">discord.js</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(0,240,255,0.45); color: #9FF7FF; padding: 4px 10px">ffmpeg</li>
+</ul>
+<div class="btns" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px">
+<a href="https://github.com/perezjpg/QUAD" class="cut" style="text-decoration: none; background: #00F0FF; color: #07060D; padding: 10px 20px; font-family: 'Chakra Petch', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">View on GitHub</a>
+</div>
+</div>
+<div class="term" style="flex: 1 1 340px; min-width: 0; background: #030208; border-left: 1px solid rgba(0,240,255,0.2); color: #E8E6F0; padding: 28px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; line-height: 1.9; display: flex; flex-direction: column; justify-content: center; overflow-x: auto">
+<div style="color: #A9A5C4"># boot sequence</div>
+<div><span style="color: #00F0FF">$</span> npm install</div>
+<div><span style="color: #00F0FF">$</span> npm run doctor</div>
+<div><span style="color: #00F0FF">$</span> npm run deploy</div>
+<div><span style="color: #00F0FF">$</span> npm start</div>
+<div><span style="color: #00F0FF">$</span> <span class="caret" aria-hidden="true" style="display: inline-block; width: 8px; height: 1.1em; vertical-align: -0.2em; background: #FF2BD6; box-shadow: 0 0 10px #FF2BD6"></span></div>
+</div>
+</article>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #FF2BD6; font-weight: 500; letter-spacing: 0.06em">COURSEWORK · C++</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.375rem">C++ lab series</h3>
+<p style="margin: 0; color: #B5B1CC">Twelve labs and counting, from first Git commits to selection, loops, functions, file I/O, arrays and structs, and searching, sorting and statistics.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; margin-top: auto">
+<a href="https://github.com/perezjpg/lab12-search-sorting-statistics" style="padding: 12px 0">lab12-search-sorting →</a>
+<a href="https://github.com/perezjpg/lab11-arrays-structs" style="padding: 12px 0">lab11-arrays-structs →</a>
+<a href="https://github.com/perezjpg/lab9-file-io" style="padding: 12px 0">lab9-file-io →</a>
+<a href="https://github.com/perezjpg/lab8-functions" style="padding: 12px 0">lab8-functions →</a>
+</div>
+</article>
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #FF2BD6; font-weight: 500; letter-spacing: 0.06em">IN THE WORKS</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.375rem">Quad-The-Gathering</h3>
+<p style="margin: 0; color: #B5B1CC">The next QUAD project. Just getting started. [ONE LINE ON WHAT IT WILL BE.]</p>
+<div style="display: flex; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; margin-top: auto">
+<a href="https://github.com/perezjpg/Quad-The-Gathering" style="padding: 12px 0">repository →</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="about" style="border-top: 1px solid rgba(0,240,255,0.2)">
+<div style="max-width: 1080px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 48px">
+<h2 style="margin: 0; flex: 1 1 240px; font-family: 'Chakra Petch', sans-serif; font-size: 2.25rem; text-transform: uppercase; letter-spacing: 0.04em"><span style="color: #FF2BD6; font-family: 'JetBrains Mono', monospace; font-size: 1rem; vertical-align: middle">02 // </span>About</h2>
+<div style="flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px; color: #D5D2E6; font-size: 1.0625rem">
+<p style="margin: 0">I'm Johna, based in Puerto Rico and serving in the US Army. I've been on GitHub since 2020, and most of what I build starts the same way: something my friends and I needed, like a Minecraft server that's easy to run or a Discord bot that does exactly what we want.</p>
+<p style="margin: 0">Right now I'm working through a C++ course one lab at a time, while keeping my self-hosted projects running at home on Docker. I like software that is tested, runs on my own hardware, and stays out of the way.</p>
+<ul style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">C++</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">Python</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">JavaScript</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">Node.js</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">FastAPI</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">Docker</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">SQLite</li>
+<li style="font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; border: 1px solid rgba(255,43,214,0.55); color: #FFC4F1; padding: 4px 10px">Git &amp; GitHub</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="contact" style="border-top: 1px solid rgba(255,43,214,0.35); background: rgba(7,6,13,0.72); backdrop-filter: blur(6px)">
+<div style="max-width: 1080px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 12px; flex: 999 1 420px; min-width: 0">
+<h2 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 0 0 22px rgba(255,43,214,0.5)"><span style="color: #FF2BD6; font-family: 'JetBrains Mono', monospace; font-size: 1rem; vertical-align: middle">03 // </span>Open a channel.</h2>
+<p style="margin: 0; color: #B5B1CC; max-width: 32rem">Questions about a project, or want to build something together? The fastest way to reach me is on GitHub.</p>
+</div>
+<div class="btns" style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://github.com/perezjpg" class="cut" style="text-decoration: none; background: #00F0FF; color: #07060D; padding: 12px 24px; font-family: 'Chakra Petch', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Message me on GitHub</a>
+</div>
+</div>
+<footer style="max-width: 1080px; margin: 0 auto; padding: 24px; border-top: 1px solid rgba(0,240,255,0.2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #A9A5C4">
+<span>© 2026 Johna · perezjpg</span>
+<span>Hosted on GitHub Pages</span>
+</footer>
+</section>
+</main>
+</div>
+</div>
+</body>
+</html>
