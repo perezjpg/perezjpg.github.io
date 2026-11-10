@@ -58,7 +58,7 @@ header{animation:down .6s ease-out backwards}
 .cursor{animation:blink 1.05s steps(1) infinite}
 .caret{animation:blink 1s steps(1) infinite}
 @supports (animation-timeline: view()){
-#projects h2,#projects .card,#about h2,#about p,#about li,#contact h2,#contact p,#contact .btns a{animation:up linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
+#projects h2,#projects .card,#vibecoding h2,#vibecoding p,#vibecoding .card,#about h2,#about p,#about li,#contact h2,#contact p,#contact .btns a{animation:up linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
 .term>div{animation:type linear both;animation-timeline:view()}
 .term>div:nth-child(1){animation-range:entry 30% cover 28%}
 .term>div:nth-child(2){animation-range:cover 24% cover 32%}
@@ -112,6 +112,7 @@ PEREZJPG
 <div style="display: flex; flex-wrap: wrap; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem">
 <a href="#projects" style="text-decoration: none; padding: 11px 14px">/projects</a>
 <a href="#about" style="text-decoration: none; padding: 11px 14px">/about</a>
+<a href="#vibecoding" style="text-decoration: none; padding: 11px 14px">/vibecoding</a>
 <a href="#contact" style="text-decoration: none; padding: 11px 14px">/contact</a>
 <a href="https://github.com/perezjpg" style="text-decoration: none; padding: 11px 14px; display: flex; align-items: center; gap: 6px">
 <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
@@ -255,10 +256,37 @@ github
 </div>
 </section>
 
+<section id="vibecoding" style="border-top: 1px solid rgba(0,240,255,0.2)">
+<div style="max-width: 1080px; margin: 0 auto; padding: 88px 24px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 2.25rem; text-transform: uppercase; letter-spacing: 0.04em"><span style="color: #FF2BD6; font-family: 'JetBrains Mono', monospace; font-size: 1rem; vertical-align: middle">03 // </span>Vibecoding</h2>
+<p style="margin: 0; color: #D5D2E6; font-size: 1.0625rem; max-width: 44rem">Most of my projects are vibecoded. I describe what I want in plain language and an AI coding agent, Claude Code, writes the code with me. I bring the idea, the direction and the final call; the agent does the typing.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #00F0FF; letter-spacing: 0.06em">STEP 01</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.375rem">Describe</h3>
+<p style="margin: 0; color: #B5B1CC">I explain the idea the way I'd brief a teammate: what it should do, who it's for, and what "done" looks like.</p>
+</article>
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #00F0FF; letter-spacing: 0.06em">STEP 02</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.375rem">Build and test</h3>
+<p style="margin: 0; color: #B5B1CC">The agent writes the code and its tests. Nothing counts until it works on the real thing, like my actual Minecraft server, not just on paper.</p>
+</article>
+<article class="card" style="background: rgba(13,11,26,0.82); border: 1px solid rgba(0,240,255,0.3); backdrop-filter: blur(6px); padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #00F0FF; letter-spacing: 0.06em">STEP 03</p>
+<h3 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: 1.375rem">Commit</h3>
+<p style="margin: 0; color: #B5B1CC">Every working change is committed and pushed to GitHub right away, so each project keeps a clean, step-by-step history.</p>
+</article>
+</div>
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: #A9A5C4">&gt; mc-panel, QUAD Bot, Quad-The-Gathering and this site were all built this way.</p>
+</div>
+</section>
+
 <section id="contact" style="border-top: 1px solid rgba(255,43,214,0.35); background: rgba(7,6,13,0.72); backdrop-filter: blur(6px)">
 <div style="max-width: 1080px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 12px; flex: 999 1 420px; min-width: 0">
-<h2 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 0 0 22px rgba(255,43,214,0.5)"><span style="color: #FF2BD6; font-family: 'JetBrains Mono', monospace; font-size: 1rem; vertical-align: middle">03 // </span>Open a channel.</h2>
+<h2 style="margin: 0; font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 0 0 22px rgba(255,43,214,0.5)"><span style="color: #FF2BD6; font-family: 'JetBrains Mono', monospace; font-size: 1rem; vertical-align: middle">04 // </span>Open a channel.</h2>
 <p style="margin: 0; color: #B5B1CC; max-width: 32rem">Questions about a project, or want to build something together? The fastest way to reach me is on GitHub.</p>
 </div>
 <div class="btns" style="display: flex; flex-wrap: wrap; gap: 12px">
