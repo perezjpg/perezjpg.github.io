@@ -274,11 +274,11 @@ PEREZJPG
 <div data-out="contact" hidden>Find me at <a href="https://github.com/perezjpg">github.com/perezjpg</a></div>
 <div data-out="unknown" hidden style="color: #FFC4F1">Command not found. Type help to see the list.</div>
 </div>
-<form class="tform" style="display: flex; align-items: center; gap: 10px; padding: 4px 18px; border-top: 1px solid rgba(0,240,255,0.18)">
+<div class="tform" style="display: flex; align-items: center; gap: 10px; padding: 4px 18px; border-top: 1px solid rgba(0,240,255,0.18)">
 <label for="tin" style="color: var(--pink)">johna@site:~$</label>
 <input id="tin" class="tin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type help">
-<button type="submit" class="chip" style="border: 0; color: var(--accent)">run</button>
-</form>
+<button type="button" class="chip trun" style="border: 0; color: var(--accent)">run</button>
+</div>
 </div>
 </div>
 </section>
@@ -361,7 +361,9 @@ var run = function (cmd) {
   R.querySelector('[data-out="unknown"]').hidden = hit;
 };
 if (form) {
-  form.addEventListener('submit', function (e) { e.preventDefault(); run(tin.value); tin.value = ''; });
+  var go = function () { run(tin.value); tin.value = ''; };
+  tin.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  R.querySelector('.trun').addEventListener('click', function () { go(); tin.focus(); });
   all('.tcmd').forEach(function (b) { b.addEventListener('click', function () { run(b.dataset.cmd); }); });
 }
 var cv = R.querySelector('.fx');
