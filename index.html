@@ -366,7 +366,7 @@ if (cells.length && cap) {
     c.addEventListener('pointerleave', function () { if (total) cap.textContent = total; });
   });
   var load = function () {
-    var since = key(start).replace(/-(d)(?!d)/g, '-0$1'), map = {}, page = 1;
+    var p2 = function (n) { return (n < 10 ? '0' : '') + n; }, since = start.getFullYear() + '-' + p2(start.getMonth() + 1) + '-' + p2(start.getDate()), map = {}, page = 1;
     var next = function () {
       fetch('https://api.github.com/search/commits?q=author:perezjpg+author-date:%3E%3D' + since + '&sort=author-date&order=desc&per_page=100&page=' + page)
         .then(function (r) { if (!r.ok) throw new Error('github'); return r.json(); })
