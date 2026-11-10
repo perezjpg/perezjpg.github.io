@@ -60,6 +60,10 @@ a{color:#E8E6F0}a:hover{color:var(--accent,#00F0FF)}
 .tin{flex:1 1 120px;min-width:0;background:transparent;border:0;outline:0;color:#E8E6F0;font-family:'JetBrains Mono',monospace;font-size:1rem;min-height:44px;caret-color:var(--pink)}
 .tform:focus-within{border-color:var(--accent);box-shadow:0 0 18px color-mix(in srgb,var(--accent) 35%,transparent)}
 .prog{transform:scaleX(0);transform-origin:0 50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.site.spin main{animation:spin 1s ease-in-out}
+.site.flip main{transform:rotate(180deg)}
+.site.invert main{filter:invert(1) hue-rotate(180deg)}
 @keyframes shake{0%,100%{transform:none}15%{transform:translate(-10px,4px) rotate(-.6deg)}30%{transform:translate(9px,-5px) rotate(.5deg)}45%{transform:translate(-7px,3px)}60%{transform:translate(6px,-2px)}80%{transform:translate(-3px,1px)}}
 .site.shake main{animation:shake .6s linear}
 .site.hack .scanlines{background-image:repeating-linear-gradient(to bottom,rgba(57,255,136,.14) 0,rgba(57,255,136,.14) 1px,transparent 1px,transparent 4px)}
@@ -91,6 +95,7 @@ html{scroll-behavior:smooth}
 .hero>*:nth-child(3){animation-delay:.45s}
 .hero>*:nth-child(4){animation-delay:.6s}
 .toy{animation:up .9s cubic-bezier(.2,.7,.2,1) .5s backwards}
+main{transition:transform .8s ease,filter .5s ease}
 .cursor,.caret{animation:blink 1.05s steps(1) infinite}
 .tape{animation:roll 28s linear infinite}
 @supports (animation-timeline: scroll()){.prog{animation:grow linear both;animation-timeline:scroll(root)}}
@@ -279,7 +284,7 @@ PEREZJPG
 <div data-out="projects" hidden>mc-panel · Minecraft server control panel<br>QUAD Bot · Discord bot with music and moderation<br>Quad-The-Gathering · Commander table for 2 to 4 players<br>C++ lab series · twelve labs and counting</div>
 <div data-out="stack" hidden>C++, Python, JavaScript<br>Node.js, FastAPI, discord.js<br>Docker, SQLite, Git and GitHub</div>
 <div data-out="contact" hidden>Find me at <a href="https://github.com/perezjpg">github.com/perezjpg</a></div>
-<div data-out="ls" hidden>about.txt &nbsp; projects &nbsp; stack.cfg &nbsp; <span style="color: var(--pink)">secrets.txt</span></div>
+<div data-out="ls" hidden>about.txt &nbsp; projects &nbsp; stack.cfg &nbsp; <span style="color: var(--pink)">secrets.txt</span> &nbsp; <span style="color: var(--pink)">more.txt</span></div>
 <div data-out="secrets" hidden>You found the secret file.<br>Hidden commands: sudo, hack, party, creeper, coffee, quad, whoami, 42, exit</div>
 <div data-out="sudo" hidden>Permission denied. Nice try though.</div>
 <div data-out="hack" hidden style="color: #39FF88">Access granted. Welcome to the grid, runner.</div>
@@ -292,6 +297,21 @@ PEREZJPG
 <div data-out="exit" hidden>There is no exit. Try clear.</div>
 <div data-out="hello" hidden>Hey. Glad you stopped by.</div>
 <div data-out="rm" hidden>Nice try. This site is read only.</div>
+<div data-out="more" hidden>Even more hidden commands:<br>flip, roll, warp, invert, fortune, d20, coin, date, uptime, commits, history, echo, theme, ping, vim, git push, army, pr, minecraft, xyzzy<br><span style="color: #A9A5C4">A few are not written down anywhere.</span></div>
+<div data-out="dyn" hidden></div>
+<div data-out="okay" hidden>Okay.</div>
+<div data-out="sandwich" hidden>What? Make it yourself.</div>
+<div data-out="git" hidden>Everything up to date. As always.</div>
+<div data-out="vim" hidden>You are now stuck in vim. Good luck getting out.</div>
+<div data-out="army" hidden>Hooah.</div>
+<div data-out="pr" hidden>Wepa! Greetings from the island.</div>
+<div data-out="minecraft" hidden>The server is up. Bring a pickaxe.</div>
+<div data-out="xyzzy" hidden>Nothing happens.</div>
+<div data-out="ping" hidden>pong</div>
+<div data-out="flip" hidden>Hold on to something.</div>
+<div data-out="roll" hidden>Wheeee.</div>
+<div data-out="warp" hidden>Engaging warp drive.</div>
+<div data-out="invert" hidden>Welcome to the other side.</div>
 <div data-out="unknown" hidden style="color: #FFC4F1">Command not found. Type help to see the list.</div>
 </div>
 <div class="tform" style="display: flex; align-items: center; gap: 10px; padding: 4px 18px; border-top: 1px solid rgba(0,240,255,0.18)">
@@ -336,7 +356,7 @@ PEREZJPG
 var R = document.querySelector('.site'); if (!R || R.dataset.on) return; R.dataset.on = '1';
 var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var all = function (s) { return Array.prototype.slice.call(R.querySelectorAll(s)); };
-var px = -999, py = -999;
+var px = -999, py = -999, sp = 1;
 window.addEventListener('pointermove', function (e) { px = e.clientX; py = e.clientY; R.style.setProperty('--mx', px + 'px'); R.style.setProperty('--my', py + 'px'); });
 all('.tilt').forEach(function (c) {
   c.addEventListener('pointermove', function (e) {
@@ -413,16 +433,45 @@ var eggT = 0;
 var egg = function (c) {
   if (calm) return;
   if (c === 'creeper') { R.classList.remove('shake'); void R.offsetWidth; R.classList.add('shake'); setTimeout(function () { R.classList.remove('shake'); }, 700); }
+  if (c === 'flip') { R.classList.add('flip'); setTimeout(function () { R.classList.remove('flip'); }, 3500); }
+  if (c === 'roll') { R.classList.remove('spin'); void R.offsetWidth; R.classList.add('spin'); setTimeout(function () { R.classList.remove('spin'); }, 1100); }
+  if (c === 'invert') { R.classList.add('invert'); setTimeout(function () { R.classList.remove('invert'); }, 4000); }
+  if (c === 'warp') { sp = 9; setTimeout(function () { sp = 1; }, 5000); }
   if (c === 'party' || c === 'hack') {
     var keep = R.dataset.base || '#00F0FF', cols = c === 'hack' ? ['#39FF88'] : ['#FF2BD6', '#F5E14B', '#39FF88', '#00F0FF', '#FF8A3D'], n = 0;
     clearInterval(eggT); R.classList.toggle('hack', c === 'hack');
     eggT = setInterval(function () { R.style.setProperty('--accent', cols[n % cols.length]); n++; if (n > 24) { clearInterval(eggT); R.style.setProperty('--accent', keep); R.classList.remove('hack'); } }, 220);
   }
 };
-var alias = { hi: 'hello', hey: 'hello', matrix: 'hack', dir: 'ls', quit: 'exit', tea: 'coffee' };
+var alias = { hi: 'hello', hey: 'hello', matrix: 'hack', dir: 'ls', quit: 'exit', tea: 'coffee', dyn: 'unknown', 'make me a sandwich': 'sandwich', 'puerto rico': 'pr', 'barrel roll': 'roll', 'do a barrel roll': 'roll', spin: 'roll', mc: 'minecraft', vi: 'vim', nano: 'vim', dice: 'd20', time: 'date', hooah: 'army' };
+var born = Date.now(), hist = [], dynEl = R.querySelector('[data-out="dyn"]');
+var pick = function (a) { return a[Math.floor(Math.random() * a.length)]; };
+var dyn = function (c) {
+  if (c === 'date') return new Date().toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  if (c === 'uptime') { var s = Math.round((Date.now() - born) / 1000); return 'You have been here for ' + (s < 60 ? s + ' seconds' : Math.floor(s / 60) + ' min ' + (s % 60) + ' s') + '.'; }
+  if (c === 'fortune') return pick(['It works on my machine. Ship the machine.', 'Commit early. Commit often. Push before you sleep.', 'There are two hard problems: naming things, cache invalidation and off by one errors.', 'Back up the world before you update the server.', 'The best code is the code your friends actually use.']);
+  if (c === 'd20') { var n = 1 + Math.floor(Math.random() * 20); return 'You rolled ' + n + (n === 20 ? '. Critical hit!' : n === 1 ? '. Critical fail.' : '.'); }
+  if (c === 'coin') return pick(['Heads.', 'Tails.']);
+  if (c === 'commits') return (R.querySelector('.board').getAttribute('aria-label') || 'No data yet') + '.';
+  if (c === 'history') return hist.length > 1 ? hist.slice(0, -1).join(', ') : 'Nothing yet.';
+  if (c.indexOf('echo ') === 0) return c.slice(5);
+  if (c.indexOf('theme') === 0) {
+    var names = { cyan: '#00F0FF', green: '#39FF88', yellow: '#F5E14B', orange: '#FF8A3D' }, want = c.slice(5).trim();
+    if (names[want]) { var b = R.querySelector('.sw[data-c="' + names[want] + '"]'); if (b) b.click(); return 'Theme set to ' + want + '.'; }
+    return 'Usage: theme cyan, theme green, theme yellow or theme orange';
+  }
+  return '';
+};
 var run = function (cmd) {
   cmd = (cmd || '').trim().toLowerCase(); if (!cmd) return; var hit = false; echo.textContent = '> ' + cmd;
-  if (cmd.indexOf('sudo') === 0) cmd = 'sudo'; else if (cmd.indexOf('rm') === 0) cmd = 'rm'; else if (cmd.indexOf('cat') === 0) cmd = 'secrets'; else if (alias[cmd]) cmd = alias[cmd];
+  hist.push(cmd); if (alias[cmd]) cmd = alias[cmd];
+  var d = dyn(cmd);
+  if (d) { dynEl.textContent = d; cmd = 'dyn'; }
+  else if (cmd === 'sudo make me a sandwich') cmd = 'okay';
+  else if (cmd.indexOf('sudo') === 0) cmd = 'sudo';
+  else if (cmd.indexOf('rm') === 0) cmd = 'rm';
+  else if (cmd.indexOf('cat') === 0) cmd = cmd.indexOf('more') > 0 ? 'more' : 'secrets';
+  else if (cmd.indexOf('git') === 0) cmd = 'git';
   egg(cmd);
   all('[data-out]').forEach(function (o) { var on = o.dataset.out === cmd && cmd !== 'unknown'; o.hidden = !on; if (on) hit = true; });
   if (cmd === 'clear') { echo.textContent = ''; hit = true; }
@@ -433,6 +482,8 @@ if (form) {
   tin.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(); } });
   R.querySelector('.trun').addEventListener('click', function () { go(); tin.focus(); });
   all('.tcmd').forEach(function (b) { b.addEventListener('click', function () { run(b.dataset.cmd); }); });
+  var logo = R.querySelector('.logo'), lc = 0, lt = 0;
+  if (logo) logo.addEventListener('click', function () { lc++; clearTimeout(lt); lt = setTimeout(function () { lc = 0; }, 1500); if (lc >= 5) { lc = 0; run('party'); } });
 }
 var cv = R.querySelector('.fx');
 if (cv && cv.getContext && !calm) {
@@ -444,7 +495,7 @@ if (cv && cv.getContext && !calm) {
     cx.clearRect(0, 0, W, H);
     var col = R.style.getPropertyValue('--accent') || '#00F0FF'; cx.fillStyle = col; cx.strokeStyle = col; cx.lineWidth = 1;
     for (var i = 0; i < P.length; i++) {
-      var p = P[i]; p.x += p.vx; p.y += p.vy;
+      var p = P[i]; p.x += p.vx * sp; p.y += p.vy * sp;
       if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
       var dx = p.x - px, dy = p.y - py, d = Math.sqrt(dx * dx + dy * dy);
       cx.globalAlpha = 0.6; cx.fillRect(p.x - 1, p.y - 1, 2, 2);
